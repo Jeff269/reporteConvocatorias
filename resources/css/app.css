@@ -1,0 +1,41 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#head{
+    width: 90%;
+    margin: 15px 5%;
+}
+
+.cab img{
+    width: 100px;
+    margin: 15px;
+}
+hr{
+    margin: 0;
+    padding: 0;
+}
+#contenido{
+    text-align: center;
+}
+#contenido h2{
+    text-align: start;
+}
+
+.noapto{
+    color: red;
+    font-weight: bold;
+}
+
+.firmas{
+    padding: 0 5%;
+}
+
+.box-firma{
+    border-bottom: 1px solid  #000;
+    height: 300px;
+    width: 27%;
+    margin-bottom: 200px;
+}
