@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reportes</title>
     <style>
+        @page{
+            margin: 10mm !important
+        }
         html,body{
         margin: 0;
         padding: 0;
@@ -15,13 +18,9 @@
             font-size: 0.8em;
             font-family: Arial, Helvetica, sans-serif;
         }
-        div{
-            padding-left: 5%;
-            padding-right: 5%;
-        }
     
         #head{
-            width: 90%;
+            padding: 0 5%
         }
     
         .cab img{
@@ -49,10 +48,7 @@
             color: red;
             font-weight: bold;
         }
-        h1{
-            width: 80%;
-            text-align: center;
-        }
+
     
         .firmas{
             height: 300px;
@@ -99,7 +95,15 @@
         tr,td,th{
             border: 1px solid #000
         }
-        </style>
+        .nota{
+            padding: 0 5%;
+            text-align: justify
+        }
+        .text-start{
+            text-align: left !important;
+            padding-left: 5px
+        }
+    </style>
 </head>
 <body>
     <div id='head'>
@@ -120,7 +124,7 @@
     <div id="contenido">
             
 <h1>
-    RESULTADOS DE LA FASE DE EVALUACION CURICULAR
+    RESULTADOS DE LA FASE <br>DE EVALUACIÓN CURICULAR
 </h1>
 @foreach ($plazas as $plaza)
         <p style="display: none">{{$i=0}}</p>
@@ -141,7 +145,7 @@
                     @if ($plaza->t8_id == $reporte->t8_id)
                         <tr>
                             <td>{{++$i}}</td>
-                            <td>{{$reporte->nombre}}</td>
+                            <td class="text-start">{{$reporte->nombre}}</td>
                             <td>{{$reporte->nota}}</td>
                             <td class="{{$reporte->nota >= 16 ?'apto':'noapto'}}">{{$reporte->nota >= 16?'Apto':'No Apto'}}</td>                    
                         </tr>

@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reportes</title>
     <style>
+        @page{
+            margin: 10mm !important
+        }
         html,body{
         margin: 0;
         padding: 0;
@@ -99,6 +102,14 @@
         tr,td,th{
             border: 1px solid #000
         }
+        .nota{
+            padding: 0 5%;
+            text-align: justify
+        }
+        .text-start{
+            text-align: left !important;
+            padding-left: 5px
+        }
         </style>
 </head>
 <body>
@@ -107,7 +118,8 @@
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <h1 class="text-center">Universidad Nacional del Centro del Perú</h1>
                 <p class="text-center">“Año del Fortalecimiento de la Soberanía Nacional”</p>
-            </div>   
+            </div>
+
         </div>
         <hr>
         <h2 class="text-center">CONCURSO PÚBLICO N° 001-2022-UNCP PARA CUBRIR 
@@ -136,7 +148,7 @@
                             <th>Entrevista Personal</th>
                             <th>Nota Final</th>
                             <th>Apto</th>
-                            <th>Ganador</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -144,13 +156,13 @@
                             @if ($plaza->t8_id == $reporte->t8_id)
                                 <tr>
                                     <td>{{++$i}}</td>
-                                    <td>{{$reporte->nombre}}</td>
+                                    <td class="text-start">{{$reporte->nombre}}</td>
                                     <td>{{$reporte->n_eco}}</td>
                                     <td>{{$reporte->n_ecu}}</td>
                                     <td>{{$reporte->n_en}}</td>
                                     <td>{{$reporte->n_fin}}</td>
                                     <td class="{{$reporte->n_en >= 11 ?'apto':'noapto'}}">{{$reporte->n_en >= 11?'Apto':'Descalificado por Entrevista'}}</td>
-                                    <td></td>
+
                                     
                                 </tr>
                             @endif

@@ -6,9 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reportes</title>
     <style>
-        @page{
-            margin: 10mm !important
-        }
+        @page {margin: 10mm !important}
         html,body{
         margin: 0;
         padding: 0;
@@ -111,7 +109,7 @@
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <h1 class="text-center">Universidad Nacional del Centro del Perú</h1>
                 <p class="text-center">“Año del Fortalecimiento de la Soberanía Nacional”</p>
-            </div>   
+            </div>
         </div>
         <hr>
         <h2 class="text-center">CONCURSO PÚBLICO N° 001-2022-UNCP PARA CUBRIR 
@@ -122,37 +120,35 @@
     </div>
         <hr>
     <div id="contenido">
-    <h1>
-        RESULTADOS DE LA FASE DE EVALUACION DE CONOCIMIENTOS
-    </h1>
-    @foreach ($plazas as $plaza)
-            <p style="display: none">{{$i=0}}</p>
-            <h2>
-                {{$plaza->t8_plaza}}
-            </h2>        
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th class="col-1">#</th>
-                        <th class="col-6">Nombres y Apellidos</th>
-                        <th class="col-2">Nota</th>
-                        <th class="col-3">Apto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($reportes as $reporte)
-                        @if ($plaza->t8_id == $reporte->t8_id)
-                            <tr>
-                                <td>{{++$i}}</td>
-                                <td class="text-start">{{$reporte->nombre}}</td>
-                                <td>{{$reporte->nota}}</td>
-                                <td class="{{$reporte->nota >= 26 ?'apto':'noapto'}}">{{$reporte->nota >= 26?'Apto':'No Apto'}}</td>                    
-                            </tr>
-                        @endif
-                    @endforeach
-                </tbody>
-            </table>
-        @endforeach
+        <h1>
+            POSTULANTES INSCRITOS
+        </h1>
+        <h2>Cantidad de Postulantes:{{$reportes->count()}}</h2>
+        <br>
+        @foreach ($plazas as $plaza)
+                <p style="display: none">{{$i=0}}</p>
+                <h2>
+                    {{$plaza->t8_plaza}}
+                </h2>        
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="col-1">#</th>
+                            <th class="col-8">Nombres y Apellidos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($reportes as $reporte)
+                            @if ($plaza->t8_id == $reporte->t8_id)
+                                <tr>
+                                    <td>{{++$i}}</td>
+                                    <td class="text-start">{{$reporte->nombre}}</td>                 
+                                </tr>
+                            @endif
+                        @endforeach
+                    </tbody>
+                </table>
+            @endforeach
     </div>
         <div class="firmas">
         </div>

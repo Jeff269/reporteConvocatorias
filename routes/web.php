@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('reportes/postulantes', [PostulacionController::class, 'reportePostulantes']);
 Route::get('reportes/reqmin', [PostulacionController::class, 'reporteReqMinimos']);
 Route::get('reportes/evconocimientos', [PostulacionController::class, 'reporteEvConocimientos']);
 Route::get('reportes/evcurricular', [PostulacionController::class, 'reporteEvCurricular']);
