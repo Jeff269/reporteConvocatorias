@@ -161,7 +161,7 @@
                                     <td>{{$reporte->n_ecu}}</td>
                                     <td>{{$reporte->n_en}}</td>
                                     <td>{{$reporte->n_fin}}</td>
-                                    <td class="{{$reporte->n_en >= 11 ?'apto':'noapto'}}">{{$reporte->n_en >= 11?'Apto':'Descalificado por Entrevista'}}</td>
+                                    <td class="{{$reporte->n_en >= 11 ?'apto':'noapto'}}">{{$reporte->n_en >= 11?'Apto':'No Apto'}}</td>
 
                                     
                                 </tr>
