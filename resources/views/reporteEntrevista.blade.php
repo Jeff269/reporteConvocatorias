@@ -161,8 +161,8 @@
                                     <td>{{$reporte->n_ecu}}</td>
                                     <td>{{$reporte->n_en}}</td>
                                     <td>{{$reporte->n_fin}}</td>
-                                    <td class="{{$reporte->n_en >= 11 ?'apto':'noapto'}}">{{$reporte->n_en >= 11?'Apto':'No Apto'}}</td>
-                                    @if ($i <= $plaza->t8_cantidad && $reporte->n_en >=11)
+                                    <td class="{{$reporte->n_en >= $conv->t7_min_entrevista ?'apto':'noapto'}}">{{$reporte->n_en >= $conv->t7_min_entrevista?'Apto':'No Apto'}}</td>
+                                    @if ($i <= $plaza->t8_cantidad && $reporte->n_en >= $conv->t7_min_entrevista)
                                         <td style="border-bottom: 1px solid #124589">Ganador</td>
                                     @endif
                                     

@@ -10,14 +10,15 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class PostulacionController extends Controller
 {
     
-
-    
-
     public function reportePostulantes($id_conv){
 
         $plazas = DB::table('t8_plazas')
-            ->where('t7_convocatorias_t7_id','=',8)
+            ->where('t7_convocatorias_t7_id','=',$id_conv)
             ->get();
+        
+        $conv = DB::table('t7_convocatorias')
+            ->where('t7_id','=',$id_conv)
+            ->first();
 
         $reportes = Postulacion::select(
             DB::raw('t8_plazas.t8_plaza as plaza,t8_plazas.t8_id as t8_id, concat(t2_datos_personales.t2_apellido_pat," ",t2_datos_personales.t2_apellido_mat," ",t2_datos_personales.t2_nombres) as nombre , t13_postulacion.t13_minimo'))
@@ -30,7 +31,7 @@ class PostulacionController extends Controller
                 ->orderBy('t2_datos_personales.t2_apellido_pat','asc')
                 ->get();
                
-        $pdf = PDF::loadView('reportePostulantes',['reportes'=>$reportes,'plazas'=>$plazas]);
+        $pdf = PDF::loadView('reportePostulantes',['reportes'=>$reportes,'plazas'=>$plazas,'conv'=>$conv]);
         return $pdf->stream();
 
     }
@@ -38,8 +39,12 @@ class PostulacionController extends Controller
     public function reporteReqMinimos($id_conv){
 
         $plazas = DB::table('t8_plazas')
-            ->where('t7_convocatorias_t7_id','=',8)
+            ->where('t7_convocatorias_t7_id','=',$id_conv)
             ->get();
+
+        $conv = DB::table('t7_convocatorias')
+            ->where('t7_id','=',$id_conv)
+            ->first();
 
         $reportes = Postulacion::select(
             DB::raw('t8_plazas.t8_plaza as plaza,t8_plazas.t8_id as t8_id, concat(t2_datos_personales.t2_apellido_pat," ",t2_datos_personales.t2_apellido_mat," ",t2_datos_personales.t2_nombres) as nombre , t13_postulacion.t13_minimo'))
@@ -53,15 +58,19 @@ class PostulacionController extends Controller
                 ->orderBy('t2_datos_personales.t2_apellido_pat','asc')
                 ->get();
                
-        $pdf = PDF::loadView('reporteReqMinimos',['reportes'=>$reportes,'plazas'=>$plazas]);
+        $pdf = PDF::loadView('reporteReqMinimos',['reportes'=>$reportes,'plazas'=>$plazas,'conv'=>$conv]);
         return $pdf->stream();
 
     }
 
     public function reporteEvConocimientos($id_conv){
         $plazas = DB::table('t8_plazas')
-            ->where('t7_convocatorias_t7_id','=',8)
+            ->where('t7_convocatorias_t7_id','=',$id_conv)
             ->get();
+
+        $conv = DB::table('t7_convocatorias')
+            ->where('t7_id','=',$id_conv)
+            ->first();
 
         $reportes = Postulacion::select(
             DB::raw('t8_plazas.t8_plaza as plaza,t8_plazas.t8_id as t8_id, concat(t2_datos_personales.t2_apellido_pat," ",t2_datos_personales.t2_apellido_mat," ",t2_datos_personales.t2_nombres) as nombre , t13_postulacion.t13_conocimientos as nota'))
@@ -76,15 +85,19 @@ class PostulacionController extends Controller
                 ->orderBy('t2_datos_personales.t2_apellido_pat','asc')
                 ->get();
         
-        $pdf = PDF::loadView('reporteEvConocimientos',['reportes'=>$reportes,'plazas'=>$plazas]);
+        $pdf = PDF::loadView('reporteEvConocimientos',['reportes'=>$reportes,'plazas'=>$plazas,'conv'=>$conv]);
         
         return $pdf->stream();
     }
 
     public function reporteEvCurricular($id_conv){
         $plazas = DB::table('t8_plazas')
-            ->where('t7_convocatorias_t7_id','=',8)
+            ->where('t7_convocatorias_t7_id','=',$id_conv)
             ->get();
+
+        $conv = DB::table('t7_convocatorias')
+            ->where('t7_id','=',$id_conv)
+            ->first();
 
         $reportes = Postulacion::select(
             DB::raw('t8_plazas.t8_plaza as plaza,t8_plazas.t8_id as t8_id, concat(t2_datos_personales.t2_apellido_pat," ",t2_datos_personales.t2_apellido_mat," ",t2_datos_personales.t2_nombres) as nombre , t13_postulacion.t13_curricular as nota'))
@@ -100,15 +113,19 @@ class PostulacionController extends Controller
                 ->orderBy('t2_datos_personales.t2_apellido_pat','asc')
                 ->get();
         
-        $pdf = PDF::loadView('reporteEvCurricular',['reportes'=>$reportes,'plazas'=>$plazas]);
+        $pdf = PDF::loadView('reporteEvCurricular',['reportes'=>$reportes,'plazas'=>$plazas,'conv'=>$conv]);
         
         return $pdf->stream();
     }
 
     public function reporteEntrevista($id_conv){
         $plazas = DB::table('t8_plazas')
-            ->where('t7_convocatorias_t7_id','=',8)
+            ->where('t7_convocatorias_t7_id','=',$id_conv)
             ->get();
+
+        $conv = DB::table('t7_convocatorias')
+            ->where('t7_id','=',$id_conv)
+            ->first();
 
         $reportes = Postulacion::select(
             DB::raw('t8_plazas.t8_plaza as plaza,t8_plazas.t8_id as t8_id, concat(t2_datos_personales.t2_apellido_pat," ",t2_datos_personales.t2_apellido_mat," ",t2_datos_personales.t2_nombres) as nombre , t13_postulacion.t13_conocimientos as n_eco,t13_postulacion.t13_curricular as n_ecu,t13_postulacion.t13_entrevista as n_en,t13_postulacion.t13_final as n_fin'))
@@ -124,8 +141,8 @@ class PostulacionController extends Controller
                 ->orderBy('t13_postulacion.t13_final','desc')
                 ->get();
 
-        $pdf = PDF::loadView('reporteEntrevista',['reportes'=>$reportes,'plazas'=>$plazas]);
-        $pdf->setPaper('A4', 'landscape');
+        $pdf = PDF::loadView('reporteEntrevista',['reportes'=>$reportes,'plazas'=>$plazas,'conv'=>$conv]);
+        //$pdf->setPaper('A4', 'landscape');
         return $pdf->stream();
 
     }

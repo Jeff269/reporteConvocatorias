@@ -147,7 +147,7 @@
                             <td>{{++$i}}</td>
                             <td class="text-start">{{$reporte->nombre}}</td>
                             <td>{{$reporte->nota}}</td>
-                            <td class="{{$reporte->nota >= 16 ?'apto':'noapto'}}">{{$reporte->nota >= 16?'Apto':'No Apto'}}</td>                    
+                            <td class="{{$reporte->nota >= $conv->t7_min_curricular ?'apto':'noapto'}}">{{$reporte->nota >= $conv->t7_min_curricular?'Apto':'No Apto'}}</td>                    
                         </tr>
                     @endif
                 @endforeach
