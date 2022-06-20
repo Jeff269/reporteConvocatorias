@@ -13,7 +13,7 @@ class PostulacionController extends Controller
 
     
 
-    public function reportePostulantes(){
+    public function reportePostulantes($id_conv){
 
         $plazas = DB::table('t8_plazas')
             ->where('t7_convocatorias_t7_id','=',8)
@@ -25,7 +25,7 @@ class PostulacionController extends Controller
                 ->join('t7_convocatorias','t7_convocatorias.t7_id','=','t8_plazas.t7_convocatorias_t7_id')
                 ->join('t1_postulantes','t1_postulantes.t1_id','=','t13_postulacion.t1_postulantes_t1_id')
                 ->join('t2_datos_personales','t2_datos_personales.t1_postulantes_t1_id','=','t1_postulantes.t1_id')
-                ->where('t7_convocatorias.t7_id','=',8)
+                ->where('t7_convocatorias.t7_id','=',$id_conv)
                 ->orderBy('t8_id','asc')
                 ->orderBy('t2_datos_personales.t2_apellido_pat','asc')
                 ->get();
@@ -35,7 +35,7 @@ class PostulacionController extends Controller
 
     }
 
-    public function reporteReqMinimos(){
+    public function reporteReqMinimos($id_conv){
 
         $plazas = DB::table('t8_plazas')
             ->where('t7_convocatorias_t7_id','=',8)
@@ -47,7 +47,7 @@ class PostulacionController extends Controller
                 ->join('t7_convocatorias','t7_convocatorias.t7_id','=','t8_plazas.t7_convocatorias_t7_id')
                 ->join('t1_postulantes','t1_postulantes.t1_id','=','t13_postulacion.t1_postulantes_t1_id')
                 ->join('t2_datos_personales','t2_datos_personales.t1_postulantes_t1_id','=','t1_postulantes.t1_id')
-                ->where('t7_convocatorias.t7_id','=',8)
+                ->where('t7_convocatorias.t7_id','=',$id_conv)
                 ->orderBy('t8_id','asc')
                 ->orderBy('t13_postulacion.t13_minimo','desc')
                 ->orderBy('t2_datos_personales.t2_apellido_pat','asc')
@@ -58,7 +58,7 @@ class PostulacionController extends Controller
 
     }
 
-    public function reporteEvConocimientos(){
+    public function reporteEvConocimientos($id_conv){
         $plazas = DB::table('t8_plazas')
             ->where('t7_convocatorias_t7_id','=',8)
             ->get();
@@ -69,7 +69,7 @@ class PostulacionController extends Controller
                 ->join('t7_convocatorias','t7_convocatorias.t7_id','=','t8_plazas.t7_convocatorias_t7_id')
                 ->join('t1_postulantes','t1_postulantes.t1_id','=','t13_postulacion.t1_postulantes_t1_id')
                 ->join('t2_datos_personales','t2_datos_personales.t1_postulantes_t1_id','=','t1_postulantes.t1_id')
-                ->where('t7_convocatorias.t7_id','=',8)
+                ->where('t7_convocatorias.t7_id','=',$id_conv)
                 ->where('t13_postulacion.t13_minimo','=',1)
                 ->orderBy('t8_id','asc')
                 ->orderBy('t13_postulacion.t13_conocimientos','desc')
@@ -81,7 +81,7 @@ class PostulacionController extends Controller
         return $pdf->stream();
     }
 
-    public function reporteEvCurricular(){
+    public function reporteEvCurricular($id_conv){
         $plazas = DB::table('t8_plazas')
             ->where('t7_convocatorias_t7_id','=',8)
             ->get();
@@ -92,7 +92,7 @@ class PostulacionController extends Controller
                 ->join('t7_convocatorias','t7_convocatorias.t7_id','=','t8_plazas.t7_convocatorias_t7_id')
                 ->join('t1_postulantes','t1_postulantes.t1_id','=','t13_postulacion.t1_postulantes_t1_id')
                 ->join('t2_datos_personales','t2_datos_personales.t1_postulantes_t1_id','=','t1_postulantes.t1_id')
-                ->where('t7_convocatorias.t7_id','=',8)
+                ->where('t7_convocatorias.t7_id','=',$id_conv)
                 ->where('t13_postulacion.t13_minimo','=',1)
                 ->where('t13_postulacion.t13_conocimientos','>=',26)
                 ->orderBy('t8_id','asc')
@@ -105,7 +105,7 @@ class PostulacionController extends Controller
         return $pdf->stream();
     }
 
-    public function reporteEntrevista(){
+    public function reporteEntrevista($id_conv){
         $plazas = DB::table('t8_plazas')
             ->where('t7_convocatorias_t7_id','=',8)
             ->get();
@@ -116,7 +116,7 @@ class PostulacionController extends Controller
                 ->join('t7_convocatorias','t7_convocatorias.t7_id','=','t8_plazas.t7_convocatorias_t7_id')
                 ->join('t1_postulantes','t1_postulantes.t1_id','=','t13_postulacion.t1_postulantes_t1_id')
                 ->join('t2_datos_personales','t2_datos_personales.t1_postulantes_t1_id','=','t1_postulantes.t1_id')
-                ->where('t7_convocatorias.t7_id','=',8)
+                ->where('t7_convocatorias.t7_id','=',$id_conv)
                 ->where('t13_postulacion.t13_minimo','=',1)
                 ->where('t13_postulacion.t13_conocimientos','>=',26)
                 ->where('t13_postulacion.t13_curricular','>=',16)

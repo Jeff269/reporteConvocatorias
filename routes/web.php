@@ -18,8 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('reportes/postulantes', [PostulacionController::class, 'reportePostulantes']);
-Route::get('reportes/reqmin', [PostulacionController::class, 'reporteReqMinimos']);
-Route::get('reportes/evconocimientos', [PostulacionController::class, 'reporteEvConocimientos']);
-Route::get('reportes/evcurricular', [PostulacionController::class, 'reporteEvCurricular']);
-Route::get('reportes/final', [PostulacionController::class, 'reporteEntrevista']);
+Route::get('reportes/{id_conv}/postulantes', [PostulacionController::class, 'reportePostulantes']);
+Route::get('reportes/{id_conv}/reqmin', [PostulacionController::class, 'reporteReqMinimos']);
+Route::get('reportes/{id_conv}/evconocimientos', [PostulacionController::class, 'reporteEvConocimientos']);
+Route::get('reportes/{id_conv}/evcurricular', [PostulacionController::class, 'reporteEvCurricular']);
+Route::get('reportes/{id_conv}/final', [PostulacionController::class, 'reporteEntrevista']);
